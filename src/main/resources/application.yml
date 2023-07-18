@@ -1,0 +1,29 @@
+# Global configurations and variables
+quarkus:
+  s3:
+    aws:
+      region: us-east-1
+      credentials:
+        type: ENV_VARIABLE
+  log:
+    level: ${LOG_LEVEL:ALL}
+    console:
+      json: ${LOG_FORMAT_JSON:false}
+
+app:
+  env:
+    bucketName: ${S3_BUCKET_NAME:test}
+    key: ${S3_OBJECT_PATH:test/abc.txt}
+
+# Dev configurations and variables
+"%dev":
+  quarkus:
+    devservices:
+      enabled: false
+    s3:
+      aws:
+        region: us-east-1
+        credentials:
+          type: PROFILE
+          profile-provider:
+            profile-name: "<Enter your profile name if not default>"
